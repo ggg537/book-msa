@@ -9,6 +9,7 @@ public record BookSearchResponse(
         String bookIndex,
         String pubName,
         Integer bookPrice,
-        String category
+        String category,
+        String categoryName
 ) {}
 

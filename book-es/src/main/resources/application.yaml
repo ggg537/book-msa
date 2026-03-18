@@ -11,10 +11,10 @@ spring:
   data:
     redis:
       host: localhost
-      port: 6339  # ✅ 추가
+      port: 6339
 
   kafka:
-    bootstrap-servers: localhost:9095  # ✅ 추가
+    bootstrap-servers: localhost:9095
     consumer:
       group-id: book-es-group
       auto-offset-reset: earliest
