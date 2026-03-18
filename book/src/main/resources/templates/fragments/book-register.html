@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+<div th:fragment="content">
+
+  <div id="tab-register" class="tab-content">
+    <div class="card section">
+      <h2>도서 등록</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="regBookKey">도서 키 <span class="required">*</span></label>
+          <input type="text" id="regBookKey" placeholder="예: BK001">
+        </div>
+        <div class="form-group">
+          <label for="regIsbn">ISBN <span class="required">*</span></label>
+          <input type="text" id="regIsbn" placeholder="예: 9788966262281">
+        </div>
+        <div class="form-group">
+          <label for="regBookName">도서명 <span class="required">*</span></label>
+          <input type="text" id="regBookName" placeholder="도서명을 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="regAuthName">저자</label>
+          <input type="text" id="regAuthName" placeholder="저자명을 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="regPubName">출판사</label>
+          <input type="text" id="regPubName" placeholder="출판사명을 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="regPubDate">출판일</label>
+          <input type="date" id="regPubDate">
+        </div>
+        <div class="form-group">
+          <label for="regBookPrice">가격</label>
+          <input type="number" id="regBookPrice" placeholder="가격을 입력하세요">
+        </div>
+        <div class="form-group">
+          <label for="regCategoryParent">카테고리 (1차)</label>
+          <select id="regCategoryParent" onchange="onParentCategoryChange(this.value)">
+            <option value="">1차 분류 선택</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="regCategoryChild">카테고리 (2차)</label>
+          <select id="regCategoryChild" disabled>
+            <option value="">2차 분류 선택</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <label for="regBookIndex">목차</label>
+          <textarea id="regBookIndex" rows="4" placeholder="목차를 입력하세요"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-secondary" onclick="clearRegisterForm()">초기화</button>
+        <button class="btn btn-primary" onclick="registerBook()">등록</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+<div th:fragment="content">
+
+  <div id="tab-list" class="tab-content active">
+
+    <!-- ✅ 사이드바 + 메인 콘텐츠 2단 레이아웃 -->
+    <div class="list-layout">
+
+      <!-- 왼쪽 사이드바 카테고리 -->
+      <aside class="category-sidebar">
+        <div class="category-sidebar-title">카테고리</div>
+        <ul class="category-menu">
+          <li class="category-menu-item active" onclick="filterByCategory('', this)">
+            전체
+          </li>
+
+          <!-- 국내도서 -->
+          <li class="category-menu-item has-child" onclick="toggleCategoryMenu('domestic', '01', this)">
+            <span>국내도서</span>
+            <span class="category-arrow" id="arrow-domestic">▶</span>
+          </li>
+          <ul class="category-sub-menu" id="submenu-domestic">
+            <li class="category-sub-item" onclick="filterByCategory('01-01', this)">소설</li>
+            <li class="category-sub-item" onclick="filterByCategory('01-02', this)">시/에세이</li>
+            <li class="category-sub-item" onclick="filterByCategory('01-03', this)">인문</li>
+            <li class="category-sub-item" onclick="filterByCategory('01-04', this)">IT/컴퓨터</li>
+            <li class="category-sub-item" onclick="filterByCategory('01-05', this)">과학</li>
+            <li class="category-sub-item" onclick="filterByCategory('01-06', this)">역사</li>
+            <li class="category-sub-item" onclick="filterByCategory('01-07', this)">경제/경영</li>
+            <li class="category-sub-item" onclick="filterByCategory('01-08', this)">어린이</li>
+            <li class="category-sub-item" onclick="filterByCategory('01-09', this)">기타</li>
+          </ul>
+
+          <!-- 서양도서 -->
+          <li class="category-menu-item has-child" onclick="toggleCategoryMenu('foreign', '02', this)">
+            <span>서양도서</span>
+            <span class="category-arrow" id="arrow-foreign">▶</span>
+          </li>
+          <ul class="category-sub-menu" id="submenu-foreign">
+            <li class="category-sub-item" onclick="filterByCategory('02-01', this)">소설</li>
+            <li class="category-sub-item" onclick="filterByCategory('02-02', this)">시/에세이</li>
+          </ul>
+        </ul>
+      </aside>
+
+      <!-- 오른쪽 메인 콘텐츠 -->
+      <div class="list-main">
+
+        <!-- 검색 카드 -->
+        <div class="card search-card">
+          <div class="search-label">도서 검색</div>
+
+          <div class="main-search-wrap">
+            <div class="main-search-box">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <input type="text" id="searchBookName" class="main-search-input"
+                     placeholder="도서명으로 검색하세요..."
+                     oninput="onAutocomplete(this.value, 'autocompleteItems')"
+                     onkeypress="if(event.key==='Enter'){ doSearch(0); hideSearchDropdown(); }"
+                     onfocus="showSearchDropdown()"
+                     autocomplete="off">
+              <button class="main-search-btn" onclick="doSearch(0); hideSearchDropdown();">검색</button>
+            </div>
+
+            <!-- 드롭다운 -->
+            <div class="search-dropdown" id="searchDropdown">
+              <div id="autocompleteSection" style="display:none;">
+                <p class="dropdown-label" style="padding: 10px 16px 4px;">자동완성</p>
+                <div id="autocompleteItems"></div>
+              </div>
+              <div id="recentSection" class="dropdown-section">
+                <div class="dropdown-section-header">
+                  <p class="dropdown-label">🕐 최근 검색어</p>
+                  <button class="btn-clear-all" onclick="clearAllRecent(event)">전체삭제</button>
+                </div>
+                <div id="recentKeywords" class="keyword-tags">
+                  <span class="keyword-empty">최근 검색어가 없습니다.</span>
+                </div>
+              </div>
+              <div id="popularSection" class="dropdown-section">
+                <p class="dropdown-label">🔥 인기 검색어</p>
+                <div id="popularKeywords" class="keyword-tags">
+                  <span class="keyword-empty">인기 검색어가 없습니다.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 상세검색 토글 -->
+          <div class="advanced-toggle" onclick="toggleAdvanced()">
+            <span id="advancedToggleText">▼ 상세검색 (저자 / 출판사 / 가격 / 카테고리)</span>
+          </div>
+
+          <!-- 상세검색 -->
+          <div class="advanced-search" id="advancedSearch" style="display:none;">
+            <div class="search-grid">
+              <div class="form-group" style="position:relative;">
+                <label for="searchAuthName">저자</label>
+                <input type="text" id="searchAuthName" placeholder="저자명 검색"
+                       oninput="onAutocomplete(this.value, 'authAutocompleteList')"
+                       onkeypress="if(event.key==='Enter') doSearch(0)">
+                <div class="autocomplete-list" id="authAutocompleteList"></div>
+              </div>
+              <div class="form-group" style="position:relative;">
+                <label for="searchPubName">출판사</label>
+                <input type="text" id="searchPubName" placeholder="출판사명 검색"
+                       oninput="onAutocomplete(this.value, 'pubAutocompleteList')"
+                       onkeypress="if(event.key==='Enter') doSearch(0)">
+                <div class="autocomplete-list" id="pubAutocompleteList"></div>
+              </div>
+              <div class="form-group">
+                <label for="searchMinPrice">최소 가격</label>
+                <input type="number" id="searchMinPrice" placeholder="0"
+                       onkeypress="if(event.key==='Enter') doSearch(0)">
+              </div>
+              <div class="form-group">
+                <label for="searchMaxPrice">최대 가격</label>
+                <input type="number" id="searchMaxPrice" placeholder="999999"
+                       onkeypress="if(event.key==='Enter') doSearch(0)">
+              </div>
+              <div class="form-group">
+                <label for="searchCategory">카테고리</label>
+                <select id="searchCategory">
+                  <option value="">전체 카테고리</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; margin-top:12px;">
+              <button class="btn btn-secondary" onclick="clearSearch()">초기화</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 테이블 카드 -->
+        <div class="card">
+          <div class="table-card-header">
+            <span class="result-info" id="resultInfo"></span>
+            <div class="header-actions">
+              <span class="search-mode-badge" id="searchModeBadge"></span>
+              <button class="btn-refresh" onclick="clearSearch()">전체 목록</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+              <tr>
+                <th>도서키</th>
+                <th>ISBN</th>
+                <th class="sortable" data-field="bookName" data-label="도서명" onclick="toggleSort('bookName')">도서명 ↕</th>
+                <th class="sortable" data-field="authName" data-label="저자" onclick="toggleSort('authName')">저자 ↕</th>
+                <th>출판사</th>
+                <th>출판일</th>
+                <th>카테고리</th>
+                <th class="sortable" data-field="bookPrice" data-label="가격" onclick="toggleSort('bookPrice')">가격 ↕</th>
+                <th>관리</th>
+              </tr>
+              </thead>
+              <tbody id="bookList"></tbody>
+            </table>
+          </div>
+
+          <div class="pagination" id="pagination"></div>
+        </div>
+
+      </div><!-- /list-main -->
+    </div><!-- /list-layout -->
+  </div>
+
+</div>
+</body>
+</html>

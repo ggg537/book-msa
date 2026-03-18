@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 관리 시스템</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <h1>📚 도서 관리 시스템</h1>
+        <p class="subtitle">도서 등록 · 관리 · 검색</p>
+    </header>
+
+    <div class="tab-menu">
+        <button class="tab-btn active" onclick="switchTab('list')">도서 목록</button>
+        <button class="tab-btn" onclick="switchTab('register')">도서 등록</button>
+    </div>
+
+    <!-- 도서 목록 탭 -->
+    <th:block th:replace="~{fragments/book-list :: content}"/>
+
+    <!-- 도서 등록 탭 -->
+    <th:block th:replace="~{fragments/book-register :: content}"/>
+
+    <!-- 수정 모달 -->
+    <th:block th:replace="~{fragments/book-edit :: content}"/>
+
+</div>
+
+<div class="toast" id="toast"></div>
+<script th:src="@{/js/book-common.js}"></script>
+<script th:src="@{/js/book-list.js}"></script>
+<script th:src="@{/js/book-register.js}"></script>
+<script th:src="@{/js/book-edit.js}"></script>
+</body>
+</html>

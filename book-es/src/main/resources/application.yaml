@@ -1,0 +1,22 @@
+server:
+  port: 8081
+
+elasticsearch:
+  url: http://localhost:9220
+
+book-search:
+  url: http://localhost:8080
+
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6339  # ✅ 추가
+
+  kafka:
+    bootstrap-servers: localhost:9095  # ✅ 추가
+    consumer:
+      group-id: book-es-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

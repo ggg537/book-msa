@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+<div th:fragment="content">
+
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>도서 수정</h3>
+        <button class="modal-close" onclick="closeEditModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editBookKey">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="editBookName">도서명</label>
+            <input type="text" id="editBookName">
+          </div>
+          <div class="form-group">
+            <label for="editAuthName">저자</label>
+            <input type="text" id="editAuthName">
+          </div>
+          <div class="form-group">
+            <label for="editPubName">출판사</label>
+            <input type="text" id="editPubName">
+          </div>
+          <div class="form-group">
+            <label for="editPubDate">출판일</label>
+            <input type="date" id="editPubDate">
+          </div>
+          <div class="form-group">
+            <label for="editBookPrice">가격</label>
+            <input type="number" id="editBookPrice">
+          </div>
+          <div class="form-group">
+            <label for="editCategoryParent">카테고리 (1차)</label>
+            <select id="editCategoryParent" onchange="onEditParentCategoryChange(this.value)">
+              <option value="">1차 분류 선택</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editCategoryChild">카테고리 (2차)</label>
+            <select id="editCategoryChild" disabled>
+              <option value="">2차 분류 선택</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="editBookIndex">목차</label>
+            <textarea id="editBookIndex" rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeEditModal()">취소</button>
+        <button class="btn btn-primary" onclick="updateBook()">수정</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
