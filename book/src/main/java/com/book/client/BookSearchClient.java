@@ -114,4 +114,52 @@ public class BookSearchClient {
             throw new BusinessException(ErrorCode.SEARCH_SERVER_ERROR);
         }
     }
+
+    // 일별 검색 트렌드
+    public List<Map<String, Object>> getSearchTrend() {
+        try {
+            return bookEsRestClient.get()
+                    .uri("/api/stats/search-trend")
+                    .retrieve()
+                    .body(new ParameterizedTypeReference<List<Map<String, Object>>>() {});
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.SEARCH_SERVER_ERROR);
+        }
+    }
+
+    // 월별 검색 트렌드
+    public List<Map<String, Object>> getMonthlyTrend() {
+        try {
+            return bookEsRestClient.get()
+                    .uri("/api/stats/monthly-trend")
+                    .retrieve()
+                    .body(new ParameterizedTypeReference<List<Map<String, Object>>>() {});
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.SEARCH_SERVER_ERROR);
+        }
+    }
+
+    // 인기 검색어 TOP 10
+    public List<Map<String, Object>> getPopularKeywordStats() {
+        try {
+            return bookEsRestClient.get()
+                    .uri("/api/stats/popular-keywords")
+                    .retrieve()
+                    .body(new ParameterizedTypeReference<List<Map<String, Object>>>() {});
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.SEARCH_SERVER_ERROR);
+        }
+    }
+
+    // 카테고리별 도서 수
+    public List<Map<String, Object>> getCategoryCount() {
+        try {
+            return bookEsRestClient.get()
+                    .uri("/api/stats/category-count")
+                    .retrieve()
+                    .body(new ParameterizedTypeReference<List<Map<String, Object>>>() {});
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.SEARCH_SERVER_ERROR);
+        }
+    }
 }

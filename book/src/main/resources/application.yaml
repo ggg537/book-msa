@@ -22,7 +22,7 @@ spring:
     cache: false
 
   kafka:
-    bootstrap-servers: localhost:9095  # ✅ 추가
+    bootstrap-servers: localhost:9095
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer

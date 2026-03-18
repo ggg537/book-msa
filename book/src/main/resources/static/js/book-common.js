@@ -13,6 +13,9 @@ function switchTab(tabName) {
   if (tabName === 'register') {
     loadCategoryOptions();  // 등록 탭 열 때 카테고리 로드
   }
+  if (tabName === 'stats') {
+    loadStats();
+  }
 }
 
 /* ===== 토스트 ===== */

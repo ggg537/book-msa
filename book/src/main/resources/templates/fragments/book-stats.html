@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+<div th:fragment="content">
+
+  <div id="tab-stats" class="tab-content">
+
+    <div class="stats-grid">
+
+      <!-- 일별 검색 트렌드 -->
+      <div class="card stats-card">
+        <div class="stats-card-header">
+          <span class="stats-title">📈 일별 검색 트렌드 (최근 30일)</span>
+        </div>
+        <div id="chart-daily-trend" class="chart-wrap"></div>
+      </div>
+
+      <!-- 월별 검색 트렌드 -->
+      <div class="card stats-card">
+        <div class="stats-card-header">
+          <span class="stats-title">📊 월별 검색 트렌드 (최근 12개월)</span>
+        </div>
+        <div id="chart-monthly-trend" class="chart-wrap"></div>
+      </div>
+
+      <!-- 인기 검색어 TOP 10 -->
+      <div class="card stats-card">
+        <div class="stats-card-header">
+          <span class="stats-title">🔥 인기 검색어 TOP 10 (최근 30일)</span>
+        </div>
+        <div id="chart-popular-keywords" class="chart-wrap"></div>
+      </div>
+
+      <!-- 카테고리별 도서 수 -->
+      <div class="card stats-card">
+        <div class="stats-card-header">
+          <span class="stats-title">📚 카테고리별 도서 수</span>
+        </div>
+        <div id="chart-category-count" class="chart-wrap"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
