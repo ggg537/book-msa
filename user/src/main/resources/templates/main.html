@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}"
+      lang="ko">
+
+<head>
+    <title>메인</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body>
+<div layout:fragment="content">
+
+    <div class="main-wrap">
+
+        <!-- 히어로 섹션 -->
+        <section class="hero">
+            <h1 class="hero-title">📚 BookService</h1>
+            <p class="hero-subtitle">원하는 책을 검색하고 나만의 서재를 만들어보세요</p>
+
+            <!-- 비로그인 -->
+            <div class="hero-actions" id="heroActions">
+                <a href="/login" class="btn btn-hero-primary">로그인</a>
+                <a href="/signup" class="btn btn-hero-outline">회원가입</a>
+            </div>
+        </section>
+
+        <!-- 기능 소개 -->
+        <section class="features">
+            <div class="feature-card card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">도서 검색</h3>
+                <p class="feature-desc">원하는 책을 빠르게 검색해보세요</p>
+            </div>
+            <div class="feature-card card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">AI 추천</h3>
+                <p class="feature-desc">AI 가 나에게 맞는 책을 추천해드립니다</p>
+            </div>
+            <div class="feature-card card">
+                <div class="feature-icon">👤</div>
+                <h3 class="feature-title">내 서재</h3>
+                <p class="feature-desc">읽은 책을 관리하고 기록해보세요</p>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/main.js}"></script>
+</th:block>
+
+</body>
+</html>

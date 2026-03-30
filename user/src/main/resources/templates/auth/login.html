@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}"
+      lang="ko">
+
+<head>
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+
+<body>
+<div layout:fragment="content">
+
+    <div class="auth-wrap">
+        <div class="auth-card">
+
+            <div class="auth-header">
+                <div class="auth-icon">📚</div>
+                <h1 class="auth-title">로그인</h1>
+                <p class="auth-subtitle">BookService 에 오신 것을 환영합니다</p>
+            </div>
+
+            <form id="loginForm" novalidate>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">이메일</label>
+                    <input type="email"
+                           id="email"
+                           class="form-input"
+                           placeholder="이메일을 입력하세요"
+                           autocomplete="email">
+                    <span class="form-hint error" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">비밀번호</label>
+                    <div class="input-wrap">
+                        <input type="password"
+                               id="password"
+                               class="form-input"
+                               placeholder="비밀번호를 입력하세요"
+                               autocomplete="current-password">
+                        <button type="button" class="btn-eye" id="togglePw" tabindex="-1">👁</button>
+                    </div>
+                    <span class="form-hint error" id="passwordError"></span>
+                </div>
+
+                <button type="submit" class="btn-submit" id="loginBtn">
+                    로그인
+                </button>
+
+            </form>
+
+            <div class="divider">또는</div>
+
+            <p class="auth-footer-text">
+                아직 계정이 없으신가요?
+                <a href="/signup" class="auth-link">회원가입</a>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/auth.js}"></script>
+</th:block>
+
+</body>
+</html>

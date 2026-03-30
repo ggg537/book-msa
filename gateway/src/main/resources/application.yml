@@ -1,0 +1,51 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: book-gateway
+
+  data:
+    redis:
+      host: localhost
+      port: 6339
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-auth
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/auth/**
+
+            - id: user-members
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/members/**
+
+            - id: user-page
+              uri: http://localhost:8082
+              predicates:
+                - Path=/, /main, /login, /signup, /my-page, /css/**, /js/**, /images/**
+
+            - id: book-service
+              uri: http://localhost:8080
+              predicates:
+                - Path=/api/books/**
+
+            - id: es-service
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/search/**
+
+            - id: ai-service
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/ai/**
+
+jwt:
+  secret-key: eW91ci1zZWNyZXQta2V5LW11c3QtYmUtYXQtbGVhc3QtMzItY2hhcmFjdGVycy1sb25n
+  cookie:
+    access-token-name: accessToken

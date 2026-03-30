@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title layout:title-pattern="$CONTENT_TITLE - BookService">BookService</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- 페이지별 추가 CSS -->
+    <th:block layout:fragment="css"></th:block>
+</head>
+<body>
+
+<!-- 헤더 -->
+<header class="header">
+    <div class="header-inner">
+        <a href="/" class="logo">📚 BookService</a>
+        <nav class="nav" id="mainNav">
+            <a href="/" class="nav-link">도서 검색</a>
+            <!-- JS 로 로그인 상태 확인 후 표시 -->
+            <span id="navAuth"></span>
+        </nav>
+    </div>
+</header>
+
+<!-- 메인 콘텐츠 -->
+<main class="main">
+    <th:block layout:fragment="content"></th:block>
+</main>
+
+<!-- 푸터 -->
+<footer class="footer">
+    <div class="footer-inner">
+        <p>&copy; 2025 BookService. All rights reserved.</p>
+    </div>
+</footer>
+
+<script th:src="@{/js/common.js}"></script>
+<!-- 페이지별 추가 JS -->
+<th:block layout:fragment="script"></th:block>
+</body>
+</html>

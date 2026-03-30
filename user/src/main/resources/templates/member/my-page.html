@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}"
+      lang="ko">
+
+<head>
+    <title>내 정보</title>
+    <link rel="stylesheet" th:href="@{/css/my-page.css}">
+</head>
+
+<body>
+<div layout:fragment="content">
+
+    <div class="mypage-wrap">
+
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="profile-box card">
+                <div class="profile-avatar" id="profileAvatar">?</div>
+                <p class="profile-name" id="profileName">로딩 중...</p>
+                <p class="profile-email" id="profileEmail"></p>
+                <div class="profile-point">
+                    <span class="point-label">포인트</span>
+                    <span class="point-value" id="profilePoint">0</span>
+                </div>
+            </div>
+
+            <nav class="side-nav">
+                <button class="side-nav-item active" data-tab="info">내 정보</button>
+                <button class="side-nav-item" data-tab="password">비밀번호 변경</button>
+                <button class="side-nav-item danger" data-tab="deactivate">회원 탈퇴</button>
+            </nav>
+        </aside>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="mypage-content">
+
+            <!-- 내 정보 탭 -->
+            <section id="tab-info" class="tab-section active card">
+                <div class="section-header">
+                    <h2 class="section-title">내 정보</h2>
+                    <button class="btn btn-primary btn-sm" id="saveInfoBtn">저장</button>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">이메일</label>
+                    <input type="text" class="form-input" id="infoEmail" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">이름</label>
+                    <input type="text" class="form-input" id="infoName" readonly>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">닉네임 <span class="required">*</span></label>
+                        <input type="text" class="form-input" id="infoNickname" placeholder="닉네임">
+                        <span class="form-hint" id="nicknameHint"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">전화번호</label>
+                        <input type="tel" class="form-input" id="infoPhone" placeholder="전화번호">
+                        <span class="form-hint" id="phoneHint"></span>
+                    </div>
+                </div>
+
+                <div class="section-divider">배송지 정보</div>
+
+                <div class="form-group">
+                    <label class="form-label">우편번호</label>
+                    <input type="text" class="form-input" id="infoZipCode" placeholder="우편번호">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">주소</label>
+                    <input type="text" class="form-input" id="infoAddress" placeholder="주소">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">상세주소</label>
+                    <input type="text" class="form-input" id="infoAddressDetail" placeholder="상세주소">
+                </div>
+            </section>
+
+            <!-- 비밀번호 변경 탭 -->
+            <section id="tab-password" class="tab-section card">
+                <div class="section-header">
+                    <h2 class="section-title">비밀번호 변경</h2>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">현재 비밀번호 <span class="required">*</span></label>
+                    <input type="password" class="form-input" id="currentPassword"
+                           placeholder="현재 비밀번호를 입력하세요">
+                    <span class="form-hint" id="currentPasswordHint"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">새 비밀번호 <span class="required">*</span></label>
+                    <input type="password" class="form-input" id="newPassword"
+                           placeholder="8자 이상 입력하세요">
+                    <span class="form-hint" id="newPasswordHint"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">새 비밀번호 확인 <span class="required">*</span></label>
+                    <input type="password" class="form-input" id="newPasswordConfirm"
+                           placeholder="새 비밀번호를 다시 입력하세요">
+                    <span class="form-hint" id="newPasswordConfirmHint"></span>
+                </div>
+
+                <button class="btn btn-primary" id="changePasswordBtn">비밀번호 변경</button>
+            </section>
+
+            <!-- 회원 탈퇴 탭 -->
+            <section id="tab-deactivate" class="tab-section card">
+                <div class="section-header">
+                    <h2 class="section-title">회원 탈퇴</h2>
+                </div>
+
+                <div class="deactivate-notice">
+                    <p class="notice-title">⚠️ 탈퇴 전 꼭 확인하세요</p>
+                    <ul class="notice-list">
+                        <li>탈퇴 시 모든 회원 정보가 비활성화됩니다.</li>
+                        <li>보유 포인트는 즉시 소멸됩니다.</li>
+                        <li>탈퇴 후 동일 이메일로 재가입이 불가합니다.</li>
+                    </ul>
+                </div>
+
+                <button class="btn btn-danger" id="deactivateBtn">탈퇴하기</button>
+            </section>
+
+        </div>
+    </div>
+
+</div>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/my-page.js}"></script>
+</th:block>
+
+</body>
+</html>

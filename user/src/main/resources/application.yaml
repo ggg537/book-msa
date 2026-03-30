@@ -1,0 +1,37 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_db?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6339
+
+jwt:
+  secret-key: Ym9va3NlcnZpY2Utc2VjcmV0LWtleS0zMmNoYXJzISE=
+  access-token-expiration: 1800000
+  refresh-token-expiration: 604800000
+  cookie:
+    access-token-name: accessToken
+    refresh-token-name: refreshToken
+    access-token-max-age: 1800
+    refresh-token-max-age: 604800
+    domain: localhost
+    path: /
+    http-only: true
+    secure: false
+    same-site: Strict

@@ -1,0 +1,127 @@
+/* ===== 로그인 / 회원가입 공통 ===== */
+
+.auth-wrap {
+    min-height: calc(100vh - 88px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    background: #fafafa;
+}
+
+/* 카드 */
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 36px 32px;
+    background: #ffffff;
+    border: 1px solid #e4e4e7;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 6px 24px rgba(0,0,0,0.06);
+}
+
+/* 헤더 */
+.auth-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.auth-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.auth-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #18181b;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+}
+
+.auth-subtitle {
+    font-size: 0.82rem;
+    color: #a1a1aa;
+}
+
+/* 중복 확인 버튼 있는 입력 */
+.input-check-wrap {
+    display: flex;
+    gap: 8px;
+}
+
+.input-check-wrap .form-input { flex: 1; }
+
+.input-check-wrap .btn-outline {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 9px 14px;
+    font-size: 0.78rem;
+    width: auto;
+}
+
+.input-check-wrap .btn-outline:hover {
+    color: #7c6ef5;
+    border-color: #7c6ef5;
+    background: #f4f2fd;
+}
+
+/* 비밀번호 눈 버튼 */
+.input-wrap { position: relative; }
+.input-wrap .form-input { padding-right: 44px; }
+
+.btn-eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    color: #a1a1aa;
+    transition: color 0.15s;
+    padding: 4px;
+    line-height: 1;
+}
+
+.btn-eye:hover { color: #52525b; }
+
+/* 제출 버튼 */
+.btn-submit {
+    background: #7c6ef5;
+    color: #ffffff;
+    width: 100%;
+    padding: 11px;
+    margin-top: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+}
+
+.btn-submit:hover:not(:disabled) { background: #6a5ce8; }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* 하단 링크 */
+.auth-footer-text {
+    text-align: center;
+    font-size: 0.82rem;
+    color: #71717a;
+    margin-top: 16px;
+}
+
+.auth-link {
+    color: #7c6ef5;
+    font-weight: 500;
+}
+
+.auth-link:hover { text-decoration: underline; }
+
+/* 반응형 */
+@media (max-width: 480px) {
+    .auth-card { padding: 28px 20px; }
+}
