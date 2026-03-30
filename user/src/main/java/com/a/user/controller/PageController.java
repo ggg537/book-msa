@@ -3,6 +3,9 @@ package com.a.user.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * Thymeleaf HTML 페이지 라우팅
+ */
 @Controller
 public class PageController {
 

@@ -1,6 +1,8 @@
 package com.a.user.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -8,6 +10,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * JPA Auditing 공통 엔티티
+ * @EnableJpaAuditing 필수 (UserApplication)
+ */
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
